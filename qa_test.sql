@@ -52,9 +52,7 @@ set var_test_sql=(select replace(replace(test_sql,"env",var_env),"= date","='"||
 if v_current_batch_run<>0 and var_test_sql is not null 
 then 
 execute immediate var_test_sql into var_results;
-
 insert into `skyuk-uk-vis-cust-res-s1-lab.neeraj_r_sandpit.qa_output` values (datetime(current_timestamp(),"Europe/London"),var_code,var_test_sql,cast(var_results as string));
-
 else select "Null";
 end if;
 set i=i+1;
